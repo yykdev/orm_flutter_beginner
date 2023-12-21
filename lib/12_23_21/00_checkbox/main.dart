@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '12_23_21/00_checkbox.dart';
+import '00_checkbox.dart';
 
 void main() {
   runApp(const MyApp());
