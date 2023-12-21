@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:orm_flutter_beginner/00_repository/star_repository.dart';
 
-import '../00_model/star.dart';
-
 class CheckBoxListScreen extends StatefulWidget {
   const CheckBoxListScreen({super.key});
 
@@ -12,7 +10,7 @@ class CheckBoxListScreen extends StatefulWidget {
 
 class _CheckBoxListScreenState extends State<CheckBoxListScreen> {
   final repository = StarRepository();
-  final favorites = <Star>{};
+  final favorites = <int>{};
   @override
   Widget build(BuildContext context) {
     final stars = repository.getStars();
@@ -22,13 +20,13 @@ class _CheckBoxListScreenState extends State<CheckBoxListScreen> {
         children: stars.map((star) {
           return CheckboxListTile(
             title: Text(star.title),
-            value: favorites.contains(star),
+            value: favorites.contains(star.id),
             onChanged: (bool? value) {
               setState(() {
                 if (value! == true) {
-                  favorites.add(star);
+                  favorites.add(star.id);
                 } else {
-                  favorites.remove(star);
+                  favorites.remove(star.id);
                 }
               });
             },
