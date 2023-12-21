@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'home/home_contents.dart';
+
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
 
@@ -11,9 +13,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   int _selectPageIndex = 0;
 
   static const List<Widget> _widgetPages = <Widget>[
-    Text(
-      '홈',
-    ),
+    HomeContentsScreen(),
     Text(
       '이용서비스',
     ),
@@ -31,6 +31,15 @@ class _BottomNavigationState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Kakao T'),
+        shape: const Border(
+          bottom: BorderSide(
+            color: Colors.grey,
+            width: 3,
+          ),
+        ),
+      ),
       body: Center(
         child: _widgetPages.elementAt(_selectPageIndex),
       ),
