@@ -37,23 +37,27 @@ class _MainScreenState extends State<MainScreen> {
           ? const Center(
               child: Text('No Data'),
             )
-          : FutureBuilder<Uint8List>(
-              future: images![0].readAsBytes(),
-              builder: (context, snapshot) {
-                final data = snapshot.data;
+          : PageView(
+              children: images!.map((image) {
+                return FutureBuilder<Uint8List>(
+                    future: image.readAsBytes(),
+                    builder: (context, snapshot) {
+                      final data = snapshot.data;
 
-                if (data == null ||
-                    snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
+                      if (data == null ||
+                          snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
 
-                return Image.memory(
-                  data,
-                  width: double.infinity,
-                );
-              }),
+                      return Image.memory(
+                        data,
+                        width: double.infinity,
+                      );
+                    });
+              }).toList(),
+            ),
     );
   }
 }
