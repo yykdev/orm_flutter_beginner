@@ -37,8 +37,8 @@ class _SensorAppState extends State<SensorApp> {
                 print(accelerometerValues);
 
                 return Positioned(
-                  left: centerX,
-                  top: centerY,
+                  left: centerX + event.y * 20,
+                  top: centerY + event.x * 20,
                   child: Container(
                     decoration: const BoxDecoration(
                       color: Colors.green,
