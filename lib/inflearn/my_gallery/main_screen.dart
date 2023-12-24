@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -14,6 +15,9 @@ class _MainScreenState extends State<MainScreen> {
   final ImagePicker _picker = ImagePicker();
   List<XFile>? images;
 
+  int currentPage = 0;
+  final pageController = PageController();
+
   @override
   void initState() {
     super.initState();
@@ -23,6 +27,22 @@ class _MainScreenState extends State<MainScreen> {
 
   Future<void> loadImages() async {
     images = await _picker.pickMultiImage();
+
+    if (images != null) {
+      Timer.periodic(const Duration(seconds: 3), (timer) {
+        currentPage++;
+
+        if (currentPage > images!.length - 1) {
+          currentPage = 0;
+        }
+
+        pageController.animateToPage(
+          currentPage,
+          duration: const Duration(milliseconds: 350),
+          curve: Curves.easeIn,
+        );
+      });
+    }
 
     setState(() {});
   }
@@ -38,6 +58,7 @@ class _MainScreenState extends State<MainScreen> {
               child: Text('No Data'),
             )
           : PageView(
+              controller: pageController,
               children: images!.map((image) {
                 return FutureBuilder<Uint8List>(
                     future: image.readAsBytes(),
