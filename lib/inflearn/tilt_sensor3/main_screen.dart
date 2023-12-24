@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 
 class SensorApp extends StatefulWidget {
@@ -11,6 +12,11 @@ class SensorApp extends StatefulWidget {
 class _SensorAppState extends State<SensorApp> {
   @override
   Widget build(BuildContext context) {
+    // 가로모드
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+    ]);
+
     final centerX = MediaQuery.of(context).size.width / 2 - 50;
     final centerY = MediaQuery.of(context).size.height / 2 - 50;
 
