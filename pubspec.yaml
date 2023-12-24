@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   image_picker: ^1.0.5
   sensors_plus: ^4.0.2
+  soundpool: ^2.4.1
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +71,14 @@ flutter:
     - assets/images/team.png
     - assets/images/3d-navigation.png
     - assets/images/character.png
+    - assets/sound/do1.wav
+    - assets/sound/do2.wav
+    - assets/sound/fa.wav
+    - assets/sound/la.wav
+    - assets/sound/mi.wav
+    - assets/sound/re.wav
+    - assets/sound/si.wav
+    - assets/sound/sol.wav
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
